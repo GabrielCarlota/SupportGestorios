@@ -1,6 +1,7 @@
 ﻿using AplicaçãoSupport.Context;
 using AplicaçãoSupport.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -53,16 +54,35 @@ namespace AplicaçãoSupport.Controllers
                 new { id = empresa.Empresa_Id }, empresa);
         }
 
-        // PUT api/<EmpresaController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("{id:int}")]
+        public ActionResult Put(int id,EmpresaModel empresa)
         {
+            if(id != empresa.Empresa_Id)
+            {
+                return BadRequest("Ocorreu um erro na edição");
+            }
+            
+            _context.Entry(empresa).State = EntityState.Modified;
+            _context.SaveChanges();
+            return Ok(empresa);
         }
 
-        // DELETE api/<EmpresaController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{id:int}")]
+        public ActionResult Delete(int id)
         {
+            var empresa = _context.Empresa.FirstOrDefault(p => p.Empresa_Id == id);
+            if (id != empresa.Empresa_Id)
+            {
+                return BadRequest("Um erro ocorreu ao deletar a empresa");
+            }
+            if (empresa is null)
+            {
+                return NotFound();
+            }
+
+            _context.Empresa.Remove(empresa);
+            _context.SaveChanges();
+            return Ok();
         }
     }
 }
