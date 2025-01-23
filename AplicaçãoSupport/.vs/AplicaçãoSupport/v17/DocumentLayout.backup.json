@@ -3,12 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\gabri\\source\\repos\\SupportGestorios\\Aplica\u00E7\u00E3oSupport\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{4820FBDF-215A-412E-AF49-99133D4A62DF}|Aplica\u00E7\u00E3oSupport\\Aplica\u00E7\u00E3oSupport.csproj|c:\\users\\gabri\\source\\repos\\supportgestorios\\aplica\u00E7\u00E3osupport\\aplica\u00E7\u00E3osupport\\controllers\\empresacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4820FBDF-215A-412E-AF49-99133D4A62DF}|Aplica\u00E7\u00E3oSupport\\Aplica\u00E7\u00E3oSupport.csproj|solutionrelative:aplica\u00E7\u00E3osupport\\controllers\\empresacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{4820FBDF-215A-412E-AF49-99133D4A62DF}|Aplica\u00E7\u00E3oSupport\\Aplica\u00E7\u00E3oSupport.csproj|c:\\users\\gabri\\source\\repos\\supportgestorios\\aplica\u00E7\u00E3osupport\\aplica\u00E7\u00E3osupport\\controllers\\atendimentoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4820FBDF-215A-412E-AF49-99133D4A62DF}|Aplica\u00E7\u00E3oSupport\\Aplica\u00E7\u00E3oSupport.csproj|solutionrelative:aplica\u00E7\u00E3osupport\\controllers\\atendimentoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4820FBDF-215A-412E-AF49-99133D4A62DF}|Aplica\u00E7\u00E3oSupport\\Aplica\u00E7\u00E3oSupport.csproj|c:\\users\\gabri\\source\\repos\\supportgestorios\\aplica\u00E7\u00E3osupport\\aplica\u00E7\u00E3osupport\\controllers\\atendentecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4820FBDF-215A-412E-AF49-99133D4A62DF}|Aplica\u00E7\u00E3oSupport\\Aplica\u00E7\u00E3oSupport.csproj|solutionrelative:aplica\u00E7\u00E3osupport\\controllers\\atendentecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4820FBDF-215A-412E-AF49-99133D4A62DF}|Aplica\u00E7\u00E3oSupport\\Aplica\u00E7\u00E3oSupport.csproj|c:\\users\\gabri\\source\\repos\\supportgestorios\\aplica\u00E7\u00E3osupport\\aplica\u00E7\u00E3osupport\\controllers\\clientescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4820FBDF-215A-412E-AF49-99133D4A62DF}|Aplica\u00E7\u00E3oSupport\\Aplica\u00E7\u00E3oSupport.csproj|solutionrelative:aplica\u00E7\u00E3osupport\\controllers\\clientescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4820FBDF-215A-412E-AF49-99133D4A62DF}|Aplica\u00E7\u00E3oSupport\\Aplica\u00E7\u00E3oSupport.csproj|c:\\users\\gabri\\source\\repos\\supportgestorios\\aplica\u00E7\u00E3osupport\\aplica\u00E7\u00E3osupport\\controllers\\empresacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4820FBDF-215A-412E-AF49-99133D4A62DF}|Aplica\u00E7\u00E3oSupport\\Aplica\u00E7\u00E3oSupport.csproj|solutionrelative:aplica\u00E7\u00E3osupport\\controllers\\empresacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,12 +31,38 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "AtendimentosController.cs",
+              "DocumentMoniker": "C:\\Users\\gabri\\source\\repos\\SupportGestorios\\Aplica\u00E7\u00E3oSupport\\Aplica\u00E7\u00E3oSupport\\Controllers\\AtendimentosController.cs",
+              "RelativeDocumentMoniker": "Aplica\u00E7\u00E3oSupport\\Controllers\\AtendimentosController.cs",
+              "ToolTip": "C:\\Users\\gabri\\source\\repos\\SupportGestorios\\Aplica\u00E7\u00E3oSupport\\Aplica\u00E7\u00E3oSupport\\Controllers\\AtendimentosController.cs",
+              "RelativeToolTip": "Aplica\u00E7\u00E3oSupport\\Controllers\\AtendimentosController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-23T19:57:14.926Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ClientesController.cs",
+              "DocumentMoniker": "C:\\Users\\gabri\\source\\repos\\SupportGestorios\\Aplica\u00E7\u00E3oSupport\\Aplica\u00E7\u00E3oSupport\\Controllers\\ClientesController.cs",
+              "RelativeDocumentMoniker": "Aplica\u00E7\u00E3oSupport\\Controllers\\ClientesController.cs",
+              "ToolTip": "C:\\Users\\gabri\\source\\repos\\SupportGestorios\\Aplica\u00E7\u00E3oSupport\\Aplica\u00E7\u00E3oSupport\\Controllers\\ClientesController.cs",
+              "RelativeToolTip": "Aplica\u00E7\u00E3oSupport\\Controllers\\ClientesController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-23T19:56:54.213Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "EmpresaController.cs",
               "DocumentMoniker": "C:\\Users\\gabri\\source\\repos\\SupportGestorios\\Aplica\u00E7\u00E3oSupport\\Aplica\u00E7\u00E3oSupport\\Controllers\\EmpresaController.cs",
               "RelativeDocumentMoniker": "Aplica\u00E7\u00E3oSupport\\Controllers\\EmpresaController.cs",
               "ToolTip": "C:\\Users\\gabri\\source\\repos\\SupportGestorios\\Aplica\u00E7\u00E3oSupport\\Aplica\u00E7\u00E3oSupport\\Controllers\\EmpresaController.cs",
               "RelativeToolTip": "Aplica\u00E7\u00E3oSupport\\Controllers\\EmpresaController.cs",
-              "ViewState": "AgIAADcAAAAAAAAAAADwv1QAAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAQwBoAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-23T17:09:57.542Z",
               "EditorCaption": ""
@@ -41,7 +75,7 @@
               "RelativeDocumentMoniker": "Aplica\u00E7\u00E3oSupport\\Controllers\\AtendenteController.cs",
               "ToolTip": "C:\\Users\\gabri\\source\\repos\\SupportGestorios\\Aplica\u00E7\u00E3oSupport\\Aplica\u00E7\u00E3oSupport\\Controllers\\AtendenteController.cs",
               "RelativeToolTip": "Aplica\u00E7\u00E3oSupport\\Controllers\\AtendenteController.cs",
-              "ViewState": "AgIAAEwAAAAAAAAAAAAcwCYAAABTAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAACYAAABTAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-23T14:49:30.935Z",
               "EditorCaption": ""
