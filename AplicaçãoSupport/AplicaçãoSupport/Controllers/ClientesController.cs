@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AplicaçãoSupport.Context;
+using AplicaçãoSupport.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace AplicaçãoSupport.Controllers
 {
@@ -8,36 +10,79 @@ namespace AplicaçãoSupport.Controllers
     [ApiController]
     public class ClientesController : ControllerBase
     {
-        // GET: api/<ClientesController>
+        private readonly AplicaçãoSupportDbContext _context;
+
+        public ClientesController(AplicaçãoSupportDbContext context)
+        {
+            _context = context;
+        }
+
         [HttpGet]
-        public IEnumerable<string> Get()
+        public ActionResult<IEnumerable<ClienteModel>> Get()
         {
-            return new string[] { "value1", "value2" };
+            var cliente = _context.Cliente.ToList();
+            if (cliente is null)
+            {
+                return NotFound();
+            }
+            return Ok(cliente);
         }
 
-        // GET api/<ClientesController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("{id:int}", Name = "ObterCliente")]
+        public ActionResult Get(int id)
         {
-            return "value";
+            var cliente = _context.Cliente.FirstOrDefault(c => c.ClienteId == id);
+            if (id != cliente.ClienteId)
+            {
+                return NotFound();
+            }
+            return Ok(cliente);
         }
 
-        // POST api/<ClientesController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult Post(ClienteModel cliente)
         {
+            if (cliente == null)
+            {
+                return BadRequest("Um erro ocorreu ao incluir o cliente");
+            }
+
+            _context.Cliente.Add(cliente);
+            _context.SaveChanges();
+            return new CreatedAtRouteResult("ObterCliente",
+                new {id = cliente.ClienteId}, cliente);
         }
 
-        // PUT api/<ClientesController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("{id:int}")]
+        public ActionResult Put(int id, ClienteModel cliente)
         {
+            if (id != cliente.ClienteId)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(cliente).State = EntityState.Modified;
+            _context.SaveChanges();
+            return Ok();
+
         }
 
-        // DELETE api/<ClientesController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult Delete(int id)
         {
+            var cliente = _context.Cliente.FirstOrDefault(c => c.ClienteId == id);
+            if (cliente == null)
+            {
+                return NotFound("Nenhum cliente encontrado");
+            }
+            if (id != cliente.ClienteId) {
+                return BadRequest("Ocorreu um eero ao excluir o cliente");
+                    }
+
+            _context.Cliente.Remove(cliente);
+            _context.SaveChanges();
+
+            return Ok();
         }
     }
 }

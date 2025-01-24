@@ -7,7 +7,7 @@ namespace AplicaçãoSupport.Models
     {
         [Key, Required]
         public int Atendimento_Id { get; set; }  
-
+        [Required] public int AtendenteId { get; set; }
         public AtendenteModel? Atendente { get; set; }
 
         [Required, MaxLength(500)]

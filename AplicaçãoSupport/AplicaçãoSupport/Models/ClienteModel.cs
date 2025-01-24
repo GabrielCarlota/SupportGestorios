@@ -6,10 +6,12 @@ namespace AplicaçãoSupport.Models
     public class ClienteModel
     {
         [Key]
-        public int Cliente_Id { get; set; }
-        [Required, MaxLength(150)]
+        public int? ClienteId { get; set; }
+        [MaxLength(150)]
         public string? Nome_Cliente { get; set; }
-        public EmpresaModel? Empresa { get; set; }
+
+        public int? Empresa_id { get; set; }
+                
 
     }
 }

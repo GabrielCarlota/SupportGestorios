@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace AplicaçãoSupport.Migrations
 {
     /// <inheritdoc />
-    public partial class first : Migration
+    public partial class fdivslo : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -21,9 +21,10 @@ namespace AplicaçãoSupport.Migrations
                 {
                     Atendente_Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Nome_Atendente = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
+                    Nome_Atendente = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Cargo = table.Column<int>(type: "int", nullable: false)
+                    Senha = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
@@ -37,7 +38,7 @@ namespace AplicaçãoSupport.Migrations
                 {
                     Empresa_Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Nome_Empresa = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
+                    Nome_Empresa = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
@@ -52,19 +53,19 @@ namespace AplicaçãoSupport.Migrations
                 {
                     ClienteId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Nome_Cliente = table.Column<string>(type: "varchar(150)", maxLength: 150, nullable: false)
+                    Nome_Cliente = table.Column<string>(type: "varchar(150)", maxLength: 150, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Empresa_Id = table.Column<int>(type: "int", nullable: false)
+                    Empresa_id = table.Column<int>(type: "int", nullable: true),
+                    EmpresaModelEmpresa_Id = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Cliente", x => x.ClienteId);
                     table.ForeignKey(
-                        name: "FK_Cliente_Empresa_Empresa_Id",
-                        column: x => x.Empresa_Id,
+                        name: "FK_Cliente_Empresa_EmpresaModelEmpresa_Id",
+                        column: x => x.EmpresaModelEmpresa_Id,
                         principalTable: "Empresa",
-                        principalColumn: "Empresa_Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Empresa_Id");
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -74,7 +75,7 @@ namespace AplicaçãoSupport.Migrations
                 {
                     Atendimento_Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Atendente_Id = table.Column<int>(type: "int", nullable: true),
+                    AtendenteId = table.Column<int>(type: "int", nullable: false),
                     Problema = table.Column<string>(type: "varchar(500)", maxLength: 500, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     ClienteId = table.Column<int>(type: "int", nullable: true),
@@ -85,10 +86,11 @@ namespace AplicaçãoSupport.Migrations
                 {
                     table.PrimaryKey("PK_Atendimentos", x => x.Atendimento_Id);
                     table.ForeignKey(
-                        name: "FK_Atendimentos_Atendente_Atendente_Id",
-                        column: x => x.Atendente_Id,
+                        name: "FK_Atendimentos_Atendente_AtendenteId",
+                        column: x => x.AtendenteId,
                         principalTable: "Atendente",
-                        principalColumn: "Atendente_Id");
+                        principalColumn: "Atendente_Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Atendimentos_Cliente_ClienteId",
                         column: x => x.ClienteId,
@@ -98,9 +100,9 @@ namespace AplicaçãoSupport.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Atendimentos_Atendente_Id",
+                name: "IX_Atendimentos_AtendenteId",
                 table: "Atendimentos",
-                column: "Atendente_Id");
+                column: "AtendenteId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Atendimentos_ClienteId",
@@ -108,9 +110,9 @@ namespace AplicaçãoSupport.Migrations
                 column: "ClienteId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Cliente_Empresa_Id",
+                name: "IX_Cliente_EmpresaModelEmpresa_Id",
                 table: "Cliente",
-                column: "Empresa_Id");
+                column: "EmpresaModelEmpresa_Id");
         }
 
         /// <inheritdoc />

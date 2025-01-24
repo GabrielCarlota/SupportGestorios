@@ -1,4 +1,5 @@
-﻿using AplicaçãoSupport.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using AplicaçãoSupport.Context;
 using AplicaçãoSupport.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,28 +30,64 @@ namespace AplicaçãoSupport.Controllers
         }
 
 
-        [HttpGet("{id:int}")]
+        [HttpGet("{id:int}", Name = "ObterAtendimento")]
         public ActionResult Get(int id)
         {
-            
+            var atendimentos = _context.Atendimentos.FirstOrDefault(a => a.Atendimento_Id == id);
+
+            if(atendimentos is null)
+            {
+                return NotFound("Não existe(m) atendimentos com este id");
+            }
+            return Ok(atendimentos);
+
         }
 
-        // POST api/<AtendimentosController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult Post(AtendimentosModel atendimentos)
         {
+            if (atendimentos is null)
+            {
+                return BadRequest();
+            }
+
+            _context.Atendimentos.Add(atendimentos);
+            _context.SaveChanges();
+
+            return new CreatedAtRouteResult("ObterAtendimento", 
+            new {id = atendimentos.Atendimento_Id}, atendimentos);
+
         }
 
-        // PUT api/<AtendimentosController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("{id:int}")]
+        public ActionResult Put(int id, AtendimentosModel atendimentos)
         {
+            if(id != atendimentos.Atendimento_Id)
+            {
+                return BadRequest("Um erro ocorreu ao editar os dados!");
+            }
+
+            _context.Entry(atendimentos).State = EntityState.Modified;
+            _context.SaveChanges();
+            return Ok(atendimentos);    
         }
 
-        // DELETE api/<AtendimentosController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult Delete(int id)
         {
+            var atendimentos = _context.Atendimentos.FirstOrDefault(a => a.Atendimento_Id == id);
+            if (atendimentos is null)
+            {
+                return NotFound();
+            }
+            if (id != atendimentos.Atendimento_Id) {
+                return BadRequest();
+                    }
+
+            _context.Remove(atendimentos);
+            _context.SaveChanges();
+            return Ok(atendimentos);
+
         }
     }
 }

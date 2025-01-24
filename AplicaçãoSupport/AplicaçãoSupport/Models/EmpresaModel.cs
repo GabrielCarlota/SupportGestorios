@@ -6,9 +6,8 @@ namespace AplicaçãoSupport.Models
     {
         [Key]
         public int Empresa_Id { get; set; }
-
-        [Required, MaxLength(100)]
-        public string Nome_Empresa { get; set; }
+        public string? Nome_Empresa { get; set; }
         
+        public ICollection<ClienteModel> clientes { get; set; }
     }
 }
