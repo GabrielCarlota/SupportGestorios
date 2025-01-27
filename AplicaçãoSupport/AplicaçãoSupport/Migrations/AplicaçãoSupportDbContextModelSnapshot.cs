@@ -22,7 +22,7 @@ namespace AplicaçãoSupport.Migrations
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
 
-            modelBuilder.Entity("AplicaçãoSupport.Models.AtendenteModel", b =>
+            modelBuilder.Entity("AplicaçãoSupport.Models.Atendente", b =>
                 {
                     b.Property<int>("Atendente_Id")
                         .ValueGeneratedOnAdd()
@@ -42,7 +42,7 @@ namespace AplicaçãoSupport.Migrations
                     b.ToTable("Atendente");
                 });
 
-            modelBuilder.Entity("AplicaçãoSupport.Models.AtendimentosModel", b =>
+            modelBuilder.Entity("AplicaçãoSupport.Models.Atendimentos", b =>
                 {
                     b.Property<int>("Atendimento_Id")
                         .ValueGeneratedOnAdd()
@@ -53,14 +53,17 @@ namespace AplicaçãoSupport.Migrations
                     b.Property<int>("AtendenteId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ClienteId")
-                        .HasColumnType("int");
+                    b.Property<string>("Cliente_Atendido")
+                        .HasColumnType("longtext");
 
                     b.Property<DateTime>("Data_Atendimento")
                         .HasColumnType("datetime(6)");
 
                     b.Property<DateTime>("Data_Inclusão")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<int?>("EmpresaId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Problema")
                         .IsRequired()
@@ -71,84 +74,52 @@ namespace AplicaçãoSupport.Migrations
 
                     b.HasIndex("AtendenteId");
 
-                    b.HasIndex("ClienteId");
+                    b.HasIndex("EmpresaId");
 
                     b.ToTable("Atendimentos");
                 });
 
-            modelBuilder.Entity("AplicaçãoSupport.Models.ClienteModel", b =>
+            modelBuilder.Entity("AplicaçãoSupport.Models.Empresa", b =>
                 {
-                    b.Property<int?>("ClienteId")
+                    b.Property<int>("EmpresaId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int?>("ClienteId"));
-
-                    b.Property<int?>("EmpresaModelEmpresa_Id")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("Empresa_id")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Nome_Cliente")
-                        .HasMaxLength(150)
-                        .HasColumnType("varchar(150)");
-
-                    b.HasKey("ClienteId");
-
-                    b.HasIndex("EmpresaModelEmpresa_Id");
-
-                    b.ToTable("Cliente");
-                });
-
-            modelBuilder.Entity("AplicaçãoSupport.Models.EmpresaModel", b =>
-                {
-                    b.Property<int>("Empresa_Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Empresa_Id"));
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("EmpresaId"));
 
                     b.Property<string>("Nome_Empresa")
                         .HasColumnType("longtext");
 
-                    b.HasKey("Empresa_Id");
+                    b.HasKey("EmpresaId");
 
                     b.ToTable("Empresa");
                 });
 
-            modelBuilder.Entity("AplicaçãoSupport.Models.AtendimentosModel", b =>
+            modelBuilder.Entity("AplicaçãoSupport.Models.Atendimentos", b =>
                 {
-                    b.HasOne("AplicaçãoSupport.Models.AtendenteModel", "Atendente")
+                    b.HasOne("AplicaçãoSupport.Models.Atendente", "Atendente")
                         .WithMany("Atendimentos")
                         .HasForeignKey("AtendenteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("AplicaçãoSupport.Models.ClienteModel", "Cliente")
-                        .WithMany()
-                        .HasForeignKey("ClienteId");
+                    b.HasOne("AplicaçãoSupport.Models.Empresa", "Empresa")
+                        .WithMany("Atendimentos")
+                        .HasForeignKey("EmpresaId");
 
                     b.Navigation("Atendente");
 
-                    b.Navigation("Cliente");
+                    b.Navigation("Empresa");
                 });
 
-            modelBuilder.Entity("AplicaçãoSupport.Models.ClienteModel", b =>
-                {
-                    b.HasOne("AplicaçãoSupport.Models.EmpresaModel", null)
-                        .WithMany("clientes")
-                        .HasForeignKey("EmpresaModelEmpresa_Id");
-                });
-
-            modelBuilder.Entity("AplicaçãoSupport.Models.AtendenteModel", b =>
+            modelBuilder.Entity("AplicaçãoSupport.Models.Atendente", b =>
                 {
                     b.Navigation("Atendimentos");
                 });
 
-            modelBuilder.Entity("AplicaçãoSupport.Models.EmpresaModel", b =>
+            modelBuilder.Entity("AplicaçãoSupport.Models.Empresa", b =>
                 {
-                    b.Navigation("clientes");
+                    b.Navigation("Atendimentos");
                 });
 #pragma warning restore 612, 618
         }

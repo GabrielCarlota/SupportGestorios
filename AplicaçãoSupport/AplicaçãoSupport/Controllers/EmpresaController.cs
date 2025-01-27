@@ -19,9 +19,9 @@ namespace AplicaçãoSupport.Controllers
         }    
 
         [HttpGet]
-        public ActionResult<IEnumerable<EmpresaModel>> Get()
+        public ActionResult<IEnumerable<Empresa>> Get()
         {
-            var empresa = _context.Empresa.ToList();
+            var empresa = _context.Empresa.Take(15).ToList();
             if (empresa is null) { 
                 return NotFound();
             }
@@ -29,9 +29,9 @@ namespace AplicaçãoSupport.Controllers
         }
 
         [HttpGet("{id:int}", Name = "ObterEmpresa")]
-        public ActionResult<EmpresaModel> GetById(int id)
+        public ActionResult<Empresa> GetById(int id)
         {
-            var empresa = _context.Empresa.FirstOrDefault(p => p.Empresa_Id == id);
+            var empresa = _context.Empresa.FirstOrDefault(p => p.EmpresaId == id);
             if (empresa is null)
             {
                 return NotFound("Não foi encontrado nenhuma empresa com este ID");
@@ -40,7 +40,7 @@ namespace AplicaçãoSupport.Controllers
         }
 
         [HttpPost]
-        public ActionResult Post(EmpresaModel empresa)
+        public ActionResult Post(Empresa empresa)
         {
             if (empresa is null)
             {
@@ -51,13 +51,13 @@ namespace AplicaçãoSupport.Controllers
             _context.SaveChanges();
 
             return new CreatedAtRouteResult("ObterEmpresa",
-                new { id = empresa.Empresa_Id }, empresa);
+                new { id = empresa.EmpresaId }, empresa);
         }
 
         [HttpPut("{id:int}")]
-        public ActionResult Put(int id,EmpresaModel empresa)
+        public ActionResult Put(int id,Empresa empresa)
         {
-            if(id != empresa.Empresa_Id)
+            if(id != empresa.EmpresaId)
             {
                 return BadRequest("Ocorreu um erro na edição");
             }
@@ -70,8 +70,8 @@ namespace AplicaçãoSupport.Controllers
         [HttpDelete("{id:int}")]
         public ActionResult Delete(int id)
         {
-            var empresa = _context.Empresa.FirstOrDefault(p => p.Empresa_Id == id);
-            if (id != empresa.Empresa_Id)
+            var empresa = _context.Empresa.FirstOrDefault(p => p.EmpresaId == id);
+            if (id != empresa.EmpresaId)
             {
                 return BadRequest("Um erro ocorreu ao deletar a empresa");
             }

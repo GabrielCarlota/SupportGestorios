@@ -1,13 +1,22 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.VisualBasic;
+using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace AplicaçãoSupport.Models
 {
-    public class EmpresaModel
+    public class Empresa
     {
-        [Key]
-        public int Empresa_Id { get; set; }
-        public string? Nome_Empresa { get; set; }
+        public Empresa() {
+            Atendimentos = new Collection<Atendimentos>();
+        }
         
-        public ICollection<ClienteModel> clientes { get; set; }
+        [Key]
+        public int EmpresaId { get; set; }
+        public string? Nome_Empresa { get; set; }
+        [JsonIgnore]
+        public ICollection<Atendimentos>? Atendimentos { get; set; }
+
     }
 }

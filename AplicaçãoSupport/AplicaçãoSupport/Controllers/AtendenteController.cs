@@ -1,6 +1,7 @@
 ﻿using AplicaçãoSupport.Context;
 using AplicaçãoSupport.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ActionConstraints;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -16,22 +17,45 @@ namespace AplicaçãoSupport.Controllers
         {
             _context = context;
         }
-            
+
+
+        [HttpGet("Atendimentos")]
+        public ActionResult<IEnumerable<Atendente>> GetAtendentesAtendimentos()
+        {
+            try
+            {
+                return _context.Atendente.Include(a => a.Atendimentos).Where(a => a.Atendente_Id <= 15).ToList();
+
+            }
+            catch (Exception ex) {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    $"Um erro ocorreu ao solicitar a ação{ex}");
+            }
+        }
+
         // GET: api/<AtendenteController>
         [HttpGet]
-        public ActionResult<IEnumerable<AtendenteModel>> GetAtendente()
+        public ActionResult<IEnumerable<Atendente>> GetAtendente()
         {
-            var Atendentes = _context.Atendente.ToList();
-            if(Atendentes is null)
+            try
             {
-                return NotFound("Nenhum atendente cadastrado");
+                var Atendentes = _context.Atendente.Take(15).ToList();
+                if (Atendentes is null)
+                {
+                    return NotFound("Nenhum atendente cadastrado");
+                }
+                return _context.Atendente;
             }
-            return _context.Atendente;
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    $"Um erro ocorreu ao tentar executar a ação {ex}");
+            }
         }
 
         // GET api/<AtendenteController>/5
         [HttpGet("{id:int}", Name ="ObterAtendente")]
-        public ActionResult<AtendenteModel> Get(int id)
+        public ActionResult<Atendente> Get(int id)
         {
             var Atendente = _context.Atendente.FirstOrDefault(p=> p.Atendente_Id == id);
             if (Atendente == null)
@@ -43,7 +67,7 @@ namespace AplicaçãoSupport.Controllers
 
         // POST api/<AtendenteController>
         [HttpPost]
-        public ActionResult Post(AtendenteModel atendente)
+        public ActionResult Post(Atendente atendente)
         {
             if (atendente is null) {
                 return BadRequest();
@@ -59,7 +83,7 @@ namespace AplicaçãoSupport.Controllers
 
         // PUT api/<AtendenteController>/5
         [HttpPut("{id:int}")]
-        public ActionResult Put(int id, AtendenteModel atendente)
+        public ActionResult Put(int id, Atendente atendente)
         {
             if (id != atendente.Atendente_Id)
             {

@@ -19,9 +19,9 @@ namespace AplicaçãoSupport.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<AtendimentosModel>> Get()
+        public ActionResult<IEnumerable<Atendimentos>> Get()
         {
-            var atendimentos = _context.Atendimentos.ToList();
+            var atendimentos = _context.Atendimentos.Take(15).ToList();
             if (atendimentos is null)
             {
                 return NotFound();
@@ -44,7 +44,7 @@ namespace AplicaçãoSupport.Controllers
         }
 
         [HttpPost]
-        public ActionResult Post(AtendimentosModel atendimentos)
+        public ActionResult Post(Atendimentos atendimentos)
         {
             if (atendimentos is null)
             {
@@ -60,7 +60,7 @@ namespace AplicaçãoSupport.Controllers
         }
 
         [HttpPut("{id:int}")]
-        public ActionResult Put(int id, AtendimentosModel atendimentos)
+        public ActionResult Put(int id, Atendimentos atendimentos)
         {
             if(id != atendimentos.Atendimento_Id)
             {
